@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Vapes - Jaime Jared González García</title>
+    <link rel="stylesheet" href="CSS/vapes.css">
+</head>
+<body>
+
+    <!-- ===== PÁGINA PÚBLICA: los clientes solo pueden VER ===== -->
+    <header>
+        <h1>Catálogo de Vapes</h1>
+
+        <div class="info-alumno">
+            <p><strong>Alumno:</strong> Jaime Jared González García</p>
+            <p><strong>Universidad:</strong> Universidad Tecnológica de Izúcar de Matamoros</p>
+            <p><strong>Programa Educativo:</strong> Tecnologías de la Información e Innovación Digital</p>
+        </div>
+
+        <input type="search" id="buscador" placeholder="Busca el vape por nombre...">
+
+        <!-- Filtro para ver solo lo disponible -->
+        <label class="filtro-disponible">
+            <input type="checkbox" id="soloDisponibles"> Mostrar solo disponibles
+        </label>
+    </header>
+
+    <main class="catalogo">
+        <section class="lista-seccion">
+            <h2>Productos</h2>
+            <div id="listaVapes">
+                <p class="mensaje-lista">Cargando catálogo...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Acceso discreto para el administrador -->
+        <a href="admin.html" class="link-admin">Administrar</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="JS/conexion.js"></script>
+    <script src="JS/catalogo.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Catálogo - Jaime Jared González García</title>
+    <link rel="stylesheet" href="CSS/vapes.css">
+</head>
+<body>
+
+    <!-- ================= LOGIN (visible si NO hay sesión) ================= -->
+    <section id="vistaLogin" class="login-seccion" style="display: none;">
+        <h1>Panel de administración</h1>
+        <p>Inicia sesión para modificar el catálogo.</p>
+
+        <form id="formLogin">
+            <div class="campo">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" required autocomplete="username">
+            </div>
+            <div class="campo">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" required autocomplete="current-password">
+            </div>
+            <p id="mensajeLogin" class="mensaje-error"></p>
+            <button type="submit" id="btnEntrar">Entrar</button>
+        </form>
+
+        <a href="index.html" class="link-volver">← Volver al catálogo</a>
+    </section>
+
+    <!-- ================= PANEL (visible si HAY sesión) ================= -->
+    <div id="vistaPanel" style="display: none;">
+        <header>
+            <h1>Administrar Catálogo</h1>
+
+            <div class="info-alumno">
+                <p><strong>Alumno:</strong> Jaime Jared González García</p>
+                <p>Sesión iniciada como <strong id="correoAdmin"></strong></p>
+            </div>
+
+            <div class="barra-admin">
+                <input type="search" id="buscador" placeholder="Busca el vape por nombre...">
+                <a href="index.html" class="btn-secundario" target="_blank">Ver catálogo</a>
+                <button type="button" id="btnSalir" class="btn-salir">Cerrar sesión</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="formulario-seccion">
+                <h2 id="tituloForm">Datos del Vape</h2>
+                <form id="formVapes">
+                    <input type="hidden" id="idVape">
+
+                    <div class="campo">
+                        <label for="nombre">Nombre del Vape:</label>
+                        <input type="text" id="nombre" required placeholder="Ej: Smok Nord 5">
+                    </div>
+
+                    <div class="campo">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" placeholder="Sabor, capacidad, etc."></textarea>
+                    </div>
+
+                    <!-- Precio y stock lado a lado -->
+                    <div class="campos-fila">
+                        <div class="campo">
+                            <label for="costo">Precio ($):</label>
+                            <input type="number" id="costo" step="0.01" min="0" required placeholder="0.00">
+                        </div>
+                        <div class="campo">
+                            <label for="stock">Stock (piezas):</label>
+                            <input type="number" id="stock" step="1" min="0" required placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label for="imagen">Imagen:</label>
+                        <input type="file" id="imagen" accept="image/*">
+                        <img id="preview" class="preview-imagen" style="display: none;" alt="Vista previa">
+                    </div>
+
+                    <div class="botones-form">
+                        <button type="submit" id="btnGuardar">Guardar Vape</button>
+                        <button type="button" id="btnCancelar" style="display: none;">Cancelar Edición</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="lista-seccion">
+                <h2>Productos en Existencia</h2>
+                <div id="listaVapes"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="JS/conexion.js"></script>
+    <script src="JS/Botones.Js"></script>
+</body>
+</html>

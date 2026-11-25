@@ -1,0 +1,468 @@
+/* ==========================================
+   ESTILOS GENERALES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #92a7c7bd;
+    color: #070707;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* IMÁGENES RESPONSIVAS: nunca se salen de su contenedor */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #1e1e2f;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin-bottom: 15px;
+    /* El título se ajusta al ancho de la pantalla (mínimo 26px, máximo 40px) */
+    font-size: clamp(26px, 6vw, 40px);
+}
+
+.info-alumno {
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #cfd8dc;
+    line-height: 1.5;
+}
+
+#buscador {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+}
+
+.filtro-disponible {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #cfd8dc;
+    cursor: pointer;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Panel admin: formulario a la izquierda, productos a la derecha */
+@media (min-width: 768px) {
+    main {
+        grid-template-columns: 350px 1fr;
+        align-items: start;
+    }
+
+    /* Formulario fijo mientras se recorre la lista */
+    .formulario-seccion {
+        position: sticky;
+        top: 20px;
+    }
+
+    /* Catálogo público: sin formulario, los productos ocupan todo */
+    main.catalogo {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   ESTILOS DEL FORMULARIO
+   ========================================== */
+.formulario-seccion {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(5, 5, 5, 0.05);
+    height: fit-content;
+}
+
+.formulario-seccion h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #1e1e2f;
+    border-bottom: 2px solid #f4f6f9;
+    padding-bottom: 5px;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.campo input[type="text"],
+.campo input[type="number"],
+.campo input[type="email"],
+.campo input[type="password"],
+.campo textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    border-color: #1e1e2f;
+}
+
+.campo input[type="file"] {
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Precio y stock en la misma fila */
+.campos-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.preview-imagen {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #f4f6f9;
+    margin-top: 8px;
+    border-radius: 6px;
+}
+
+.campo textarea {
+    height: 65px;
+    resize: none;
+}
+
+.botones-form {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#btnGuardar,
+#btnEntrar {
+    background: #28a745;
+    color: white;
+    flex: 1;
+}
+
+#btnGuardar:hover,
+#btnEntrar:hover {
+    background: #218838;
+}
+
+#btnCancelar {
+    background: #dc3545;
+    color: white;
+}
+
+#btnCancelar:hover {
+    background: #c82333;
+}
+
+/* ==========================================
+   BARRA DEL ADMINISTRADOR
+   ========================================== */
+.barra-admin {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-secundario,
+.btn-salir {
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-secundario {
+    background: #cfd8dc;
+    color: #1e1e2f;
+}
+
+.btn-salir {
+    background: #dc3545;
+    color: white;
+}
+
+/* ==========================================
+   LOGIN
+   ========================================== */
+.login-seccion {
+    max-width: 380px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.login-seccion h1 {
+    font-size: 26px;
+    color: #1e1e2f;
+    margin-bottom: 5px;
+}
+
+.login-seccion > p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#btnEntrar {
+    width: 100%;
+}
+
+.mensaje-error {
+    color: #dc3545;
+    font-size: 14px;
+    min-height: 20px;
+    margin-bottom: 10px;
+}
+
+.link-volver {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #1e1e2f;
+    font-size: 14px;
+}
+
+/* ==========================================
+   ESTILOS DE LAS TARJETAS
+   ========================================== */
+.lista-seccion h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #1e1e2f;
+}
+
+.mensaje-lista {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #555;
+    padding: 20px;
+}
+
+/* Contenedor Grid de los Vapes: se acomoda solo según el ancho */
+#listaVapes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+    gap: 20px;
+}
+
+/* Tarjeta individual */
+.vape-tarjeta {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e1e8ed;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vape-tarjeta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+/* Contenedor de la imagen: siempre misma proporción en cualquier pantalla */
+.vape-imagen-contenedor {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+
+.vape-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* muestra el producto completo, sin recortarlo */
+    padding: 8px;
+}
+
+/* Producto agotado: imagen en gris */
+.vape-tarjeta.agotado .vape-imagen {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.vape-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.vape-nombre {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.vape-precio {
+    font-size: 16px;
+    color: #28a745;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.vape-info p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+/* ==========================================
+   ETIQUETAS DE STOCK
+   ========================================== */
+.stock {
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.stock-ok      { background: #d4edda; color: #155724; }
+.stock-bajo    { background: #fff3cd; color: #856404; }
+.stock-agotado { background: #f8d7da; color: #721c24; }
+
+/* Botones de acción dentro de la tarjeta */
+.vape-acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-editar {
+    background: #ffc107;
+    color: #212529;
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.btn-editar:hover {
+    background: #e0a800;
+}
+
+.btn-eliminar {
+    background: #dc3545;
+    color: white;
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.btn-eliminar:hover {
+    background: #bd2130;
+}
+
+/* ==========================================
+   PIE DE PÁGINA
+   ========================================== */
+footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.link-admin {
+    color: #1e1e2f;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* ==========================================
+   CELULARES
+   ========================================== */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 15px 10px;
+    }
+
+    .info-alumno {
+        font-size: 13px;
+    }
+
+    /* En celular caben 2 tarjetas por fila */
+    #listaVapes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .vape-info {
+        padding: 10px;
+    }
+
+    .vape-nombre {
+        font-size: 15px;
+    }
+
+    .vape-acciones {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .campos-fila {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
